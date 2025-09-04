@@ -65,11 +65,19 @@ Trade-offs:
 
 ## 4) Screenshots / Demo
 
-- Video/GIF: <add Loom/YouTube link here>
-- Screenshots:
-  - Login: `assets/screens/login.png`
-  - Tasks: `assets/screens/tasks.png`
-  - Add Task: `assets/screens/add-task.png`
+Screenshots (stored in `assets/screens/`):
+
+![Login](assets/screens/login.png)
+![Tasks](assets/screens/tasks.png)
+![Add Task](assets/screens/add-task.png)
+
+Optional (controlled sizes using HTML on GitHub):
+
+<p>
+  <img src="assets/screens/login.png" alt="Login" width="300" />
+  <img src="assets/screens/tasks.png" alt="Tasks" width="300" />
+  <img src="assets/screens/add-task.png" alt="Add Task" width="300" />
+ </p>
 
 Tip: Add files under `assets/screens/` and update the links above.
 
