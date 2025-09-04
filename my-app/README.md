@@ -1,31 +1,33 @@
-# Welcome to your Expo app 👋
+# Daily Tasks — Expo + Supabase
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Minimalist, offline-first task manager with optional cloud sync.
 
-## Get started
+## 1) Setup & Run
 
-1. Install dependencies
+Prerequisites:
+- Node.js 18+
+- Git, Android/iOS tooling (optional)
 
-   ```bash
-   npm install
-   ```
+Install:
+```bash
+npm install
+```
 
-2. Start the app
+Configure environment (PowerShell on Windows):
+```powershell
+$env:SUPABASE_URL="https://YOUR-PROJECT-REF.supabase.co"
+$env:SUPABASE_ANON_KEY="YOUR-ANON-PUBLIC-KEY"
+```
 
-   ```bash
-   npm start
-   ```
+Start (clear cache recommended after config changes):
+```bash
+npx expo start -c
+```
 
-In the output, you'll find options to open the app in a
+Open on device/emulator:
+- Press `a` for Android, `i` for iOS, or `w` for Web in the Expo terminal
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Cloud Sync (Supabase)
+## 2) Cloud Sync (Supabase)
 
 This app supports syncing tasks across devices via Supabase.
 
@@ -42,17 +44,36 @@ Setup:
   - `updated_at` timestamptz
 - Set environment variables (in your shell) used by `app.json` extra before running:
 
-```bash
-set SUPABASE_URL=your-url
-set SUPABASE_ANON_KEY=your-anon-key
-```
+Use the PowerShell instructions above (or `.env` with a shell that exports envs).
 
 Sync behavior:
 - Offline-first: tasks are stored locally
 - Pull remote and push local on pull-to-refresh
 - Last-write-wins via `updatedAt`
 
-## Get a fresh project
+## 3) Technical Choices (Why)
+
+- Expo Router (file-based routing): simple navigation, auth gating via `app/_layout.tsx`.
+- AsyncStorage for offline-first: tasks work without network, optimistic updates.
+- Supabase for sync: easy email/password auth and Postgres; last-write-wins via `updatedAt`.
+- Gesture Handler + Reanimated: smooth swipe to complete/delete.
+- Minimal UI: clear hierarchy, category chips, accent color FAB.
+
+Trade-offs:
+- LWW conflict resolution is predictable but not merge-aware; sufficient for a personal task app.
+- Sync on pull-to-refresh to keep network usage explicit.
+
+## 4) Screenshots / Demo
+
+- Video/GIF: <add Loom/YouTube link here>
+- Screenshots:
+  - Login: `assets/screens/login.png`
+  - Tasks: `assets/screens/tasks.png`
+  - Add Task: `assets/screens/add-task.png`
+
+Tip: Add files under `assets/screens/` and update the links above.
+
+## 5) Get a fresh project
 
 When you're ready, run:
 
@@ -62,14 +83,14 @@ npm run reset-project
 
 This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
-## Learn more
+## 6) Learn more
 
 To learn more about developing your project with Expo, look at the following resources:
 
 - [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
 - [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
-## Join the community
+## 7) Join the community
 
 Join our community of developers creating universal apps.
 
